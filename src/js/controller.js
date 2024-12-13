@@ -11,7 +11,7 @@ const timeout = function (s) {
 };
 
 const showRecipes = async function () {
-
+    const validIngredient = (impureData) =>impureData?impureData:"";
     try {
         const response = await fetch("https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886");
         const data = await response.json();
@@ -83,27 +83,19 @@ const showRecipes = async function () {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-            <li class="recipe__ingredient">
+          ${recipe.ingredients.map(ingredient => {
+            return `<li class="recipe__ingredient">
               <svg class="recipe__icon">
                 <use href="src/img/icons.svg#icon-check"></use>
               </svg>
-              <div class="recipe__quantity">1000</div>
+              <div class="recipe__quantity">${validIngredient(ingredient.quantity)}</div>
               <div class="recipe__description">
-                <span class="recipe__unit">g</span>
-                pasta
+                <span class="recipe__unit">${validIngredient(ingredient.unit)}</span>
+                ${ingredient.description}
               </div>
-            </li>
-
-            <li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="src/img/icons.svg#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">0.5</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">cup</span>
-                ricotta cheese
-              </div>
-            </li>
+            </li>`;
+        }).join("")}
+  
           </ul>
         </div>
 
