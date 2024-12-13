@@ -16,6 +16,18 @@ const showRecipes = async function () {
         if (!response.ok) throw new Error(`${data.message}  status : ${response.status}`);
         console.log(response);
         console.log(data);
+        let {recipe} = data.data;
+        recipe = {
+            id: recipe.id,
+            title: recipe.title,
+            publisher: recipe.publisher,
+            sourceUrl: recipe.source_url,
+            image: recipe.image_url,
+            servings: recipe.servings,
+            cookingTime: recipe.cooking_time,
+            ingredients: recipe.ingredients
+        }
+        console.log("recipe V2 modal", recipe);
     } catch (err) {
         debugger;
         alert("Error fetching recipes");
