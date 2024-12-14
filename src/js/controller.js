@@ -15,6 +15,8 @@ const timeout = function (s) {
     });
 };
 
+
+
 const renderSpinner = function (parentEl) {
     const markUp = `
         <div class="spinner">
@@ -26,14 +28,23 @@ const renderSpinner = function (parentEl) {
     parentEl.innerHTML='';
     parentEl.insertAdjacentHTML('afterbegin', markUp);
 }
-
+let count =0;
 const showRecipes = async function () {
+    const hashCode =window.location.hash;
+    const recipeId = hashCode.slice(1);
+
+    // Adding a guard
+    if(!recipeId)return;
+
+    console.log('count',count++);
+    // console.log(hashCode);
+    // console.log(recipeId);
     const validIngredient = (impureData) =>impureData?impureData:"";
     try {
         //loading recipe
         renderSpinner(recipeContainer);
         // debugger;
-        const response = await fetch("https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886");
+        const response = await fetch(`https://forkify-api.jonas.io/api/v2/recipes/${recipeId}`);
         const data = await response.json();
         if (!response.ok) throw new Error(`${data.message}  status : ${response.status}`);
         console.log(response);
@@ -150,4 +161,6 @@ const showRecipes = async function () {
         console.log(err)
     }
 }
-showRecipes();
+// showRecipes();
+const showRecipeEventTypes = ['hashchange', 'load'];
+showRecipeEventTypes.forEach((eventType) => window.addEventListener(eventType, showRecipes));
