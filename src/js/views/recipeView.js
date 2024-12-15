@@ -1,4 +1,5 @@
 import icons from 'url:../../img/icons.svg';
+import {Fraction} from "fractional";
 
 class RecipeView {
     #parentElement = document.querySelector(".recipe");
@@ -17,8 +18,6 @@ class RecipeView {
     #clear() {
         this.#parentElement.innerHTML = '';
     }
-
-    #validIngredient = (impureData) => impureData ? impureData : "";
 
     #generateMarkup() {
         return `<figure class="recipe__fig">
@@ -72,19 +71,7 @@ class RecipeView {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-          ${this.#data.ingredients.map(ingredient => {
-            return `<li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="${icons}#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">${this.#validIngredient(ingredient.quantity)}</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">${this.#validIngredient(ingredient.unit)}</span>
-                ${ingredient.description}
-              </div>
-            </li>`;
-        }).join("")}
-  
+          ${this.#data.ingredients.map(this.#generateIngredientsMarkup).join("")}
           </ul>
         </div>
 
@@ -106,6 +93,23 @@ class RecipeView {
             </svg>
           </a>
         </div>`
+    }
+
+    #generateIngredientsMarkup(ingredient) {
+        const validIngredient = (impureData) => impureData ? impureData : "";
+        const getFractionalValue = (value) => validIngredient(value) ? new Fraction(value).toString() : '';
+        console.log(ingredient);
+        // debugger;
+        return `<li class="recipe__ingredient">
+              <svg class="recipe__icon">
+                <use href="${icons}#icon-check"></use>
+              </svg>
+              <div class="recipe__quantity">${getFractionalValue(ingredient.quantity)}</div>
+              <div class="recipe__description">
+                <span class="recipe__unit">${validIngredient(ingredient.unit)}</span>
+                ${ingredient.description}
+              </div>
+            </li>`;
     }
 
     renderSpinner() {

@@ -29,7 +29,7 @@ const controlRecipe = async function () {
     } catch (err) {
         alert("Error fetching recipes");
         console.log("Error fetching recipes");
-        console.log(err)
+        console.log(err);
     }
 }
 
