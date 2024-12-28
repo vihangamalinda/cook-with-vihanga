@@ -19,6 +19,11 @@ class RecipeView {
         this.#parentElement.innerHTML = '';
     }
 
+    addHandler(handler) {
+        const recipeViewEventTypes = ['hashchange', 'load'];
+        recipeViewEventTypes.forEach((eventType) => window.addEventListener(eventType, handler));
+    }
+
     #generateMarkup() {
         return `<figure class="recipe__fig">
           <img src="${this.#data.image}" alt="Tomato" class="recipe__img" />
