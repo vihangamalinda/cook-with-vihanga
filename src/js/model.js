@@ -24,7 +24,6 @@ export const loadRecipe = async (recipeId) => {
         }
         console.log("recipe V2 modal", state.recipe);
     } catch (err) {
-        console.log(err);
-        alert(err);
+        throw err;
     }
 }

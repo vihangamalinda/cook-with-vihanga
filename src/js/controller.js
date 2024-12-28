@@ -19,9 +19,7 @@ const controlRecipe = async function () {
         // 2) Rendering recipes
         recipeView.render(recipe);
     } catch (err) {
-        alert("Error fetching recipes");
-        console.log("Error fetching recipes");
-        console.log(err);
+        recipeView.renderError();
     }
 }
 
