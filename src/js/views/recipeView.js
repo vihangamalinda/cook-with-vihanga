@@ -148,7 +148,7 @@ class RecipeView {
 
     renderMessage(message = this.#message) {
         const markUp = `
-            <div class="error">
+            <div class="success">
                 <div>
               <svg>
                 <use href="${icons}#icon-smile"></use>
