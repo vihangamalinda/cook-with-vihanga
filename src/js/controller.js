@@ -40,7 +40,7 @@ const controlSearchResults = async function (e) {
 }
 
 const init = () => {
-    recipeView.addHandler(controlRecipe);
+    recipeView.addHandlerRender(controlRecipe);
     searchView.addHandlerSearch(controlSearchResults);
 }
 init();

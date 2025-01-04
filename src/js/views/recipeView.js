@@ -21,7 +21,7 @@ class RecipeView {
         this.#parentElement.innerHTML = '';
     }
 
-    addHandler(handler) {
+    addHandlerRender(handler) {
         const recipeViewEventTypes = ['hashchange', 'load'];
         recipeViewEventTypes.forEach((eventType) => window.addEventListener(eventType, handler));
     }
