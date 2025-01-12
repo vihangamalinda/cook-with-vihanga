@@ -7,6 +7,17 @@ export default class View {
         this._parentElement.innerHTML = '';
     }
 
+    render(data) {
+        if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
+
+        this._data = data;
+        const markUp = this._generateMarkup();
+        console.log(data);
+        console.log(this._parentElement);
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
+    }
+
     renderSpinner() {
         const markUp = `
         <div class="spinner">

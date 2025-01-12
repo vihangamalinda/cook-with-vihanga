@@ -6,17 +6,6 @@ class ResultView extends View {
     _data;
     _errorMessage = 'No results were found. Please try to search another recipe name. 👩🏾‍🍳';
 
-    render(data) {
-        if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
-
-        this._data = data;
-        const markUp = this._generateMarkup();
-        console.log(data);
-        console.log(this._parentElement);
-        this._clear();
-        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
-    }
-
     _generateMarkup() {
         return this._data.map(this.#generateMarkupPreview).join("");
     }

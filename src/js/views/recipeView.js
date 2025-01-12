@@ -8,16 +8,6 @@ class RecipeView extends View {
     _errorMessage = 'We could not find that recipe. Please try another one 🍔😆';
     _message = 'Success message';
 
-    render(data) {
-        this._data = data;
-
-        const markup = this._generateMarkup();
-        //  Removing initial data
-        this._clear();
-        // recipeContainer.innerHTML ='';
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
-
     addHandlerRender(handler) {
         const recipeViewEventTypes = ['hashchange', 'load'];
         recipeViewEventTypes.forEach((eventType) => window.addEventListener(eventType, handler));
