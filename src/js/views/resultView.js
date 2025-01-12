@@ -1,5 +1,5 @@
 import View from "./View";
-import icons from 'url:../../img/icons.svg';
+
 
 class ResultView extends View {
     _parentElement = document.querySelector(".results");
@@ -33,9 +33,6 @@ class ResultView extends View {
                   <h4 class="preview__title">${title}</h4>
                   <p class="preview__publisher">${publisher}</p>
                   <div class="preview__user-generated">
-                    <svg>
-                      <use href="${icons}#icon-user"></use>
-                    </svg>
                   </div>
                 </div>
               </a>
