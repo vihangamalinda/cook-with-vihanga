@@ -32,7 +32,7 @@ const controlRecipe = async function () {
 const controlSearchResults = async function (e) {
     try {
         resultView.renderSpinner();
-        // debugger;
+
         // 1) Get Search query
         const query = await searchView.getQuery();
         if (!query) return;
@@ -40,10 +40,9 @@ const controlSearchResults = async function (e) {
         // 2) Load query related data
         await model.loadSearchRecipes(query);
 
-        const results = model.state.searchResult.results;
+        const results = model.getSearchResultPage();
 
-        // console.log(model.state.searchResult);
-        resultView.render(results)
+        resultView.render(results);
     } catch (e) {
         console.error(e);
         throw e;
