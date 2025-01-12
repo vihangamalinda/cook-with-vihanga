@@ -102,8 +102,7 @@ class RecipeView extends View {
     #generateIngredientsMarkup(ingredient) {
         const validIngredient = (impureData) => impureData ? impureData : "";
         const getFractionalValue = (value) => validIngredient(value) ? new Fraction(value).toString() : '';
-        console.log(ingredient);
-        // debugger;
+
         return `<li class="recipe__ingredient">
               <svg class="recipe__icon">
                 <use href="${icons}#icon-check"></use>
