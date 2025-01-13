@@ -59,7 +59,7 @@ export const loadSearchRecipes = async (query) => {
 }
 
 export const getSearchResultPage =(page = state.searchResult.currentPage) => {
-    console.log(state);
+    state.searchResult.currentPage=page;
     const {resultsPerPage} =  state.searchResult;
 
     const start = (page - 1) * resultsPerPage;
