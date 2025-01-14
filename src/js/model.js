@@ -69,3 +69,11 @@ export const getSearchResultPage =(page = state.searchResult.currentPage) => {
     console.log(results);
     return results;
 }
+
+export const updateServings = (updateServingsTo) => {
+    state.recipe.ingredients.forEach((ingredient) => {
+        const quantityPerServing = ingredient.quantity / state.recipe.servings;
+        ingredient.quantity = quantityPerServing * updateServingsTo;
+    });
+    state.recipe.servings = updateServingsTo;
+}
