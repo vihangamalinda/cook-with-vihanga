@@ -6,8 +6,8 @@ export const state = {
     searchResult: {
         query: '',
         results: [],
-        currentPage:1,
-        resultsPerPage:RESULTS_PER_PAGE
+        currentPage: 1,
+        resultsPerPage: RESULTS_PER_PAGE
     }
 }
 
@@ -15,7 +15,6 @@ export const loadRecipe = async (recipeId) => {
     try {
         // get data from API
         const data = await getJSON(`${API_URL}/${recipeId}`);
-        console.log(data);
 
         const {recipe} = data.data;
         state.recipe = {
@@ -28,7 +27,6 @@ export const loadRecipe = async (recipeId) => {
             cookingTime: recipe.cooking_time,
             ingredients: recipe.ingredients
         }
-        console.log("recipe V2 modal", state.recipe);
     } catch (err) {
         throw err;
     }
@@ -58,15 +56,13 @@ export const loadSearchRecipes = async (query) => {
     }
 }
 
-export const getSearchResultPage =(page = state.searchResult.currentPage) => {
-    state.searchResult.currentPage=page;
-    const {resultsPerPage} =  state.searchResult;
+export const getSearchResultPage = (page = state.searchResult.currentPage) => {
+    state.searchResult.currentPage = page;
+    const {resultsPerPage} = state.searchResult;
 
     const start = (page - 1) * resultsPerPage;
     const end = page * resultsPerPage;
-    console.log(start,end);
     let results = state.searchResult.results.slice(start, end);
-    console.log(results);
     return results;
 }
 

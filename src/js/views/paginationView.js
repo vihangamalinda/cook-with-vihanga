@@ -8,9 +8,6 @@ class PaginationView extends View {
     _generateMarkup() {
         const {results, resultsPerPage, currentPage} = this._data;
         const numOfPages = Math.ceil(results.length / resultsPerPage);
-        console.log(numOfPages);
-        console.log(Math.ceil(numOfPages));
-
 
         // 2) Currently one first page, and there are more pages
         if (helperInstance.isAtFirstAndHaveMorePages(currentPage, numOfPages)) return this.getNextBtnMarkUp();

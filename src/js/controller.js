@@ -51,8 +51,7 @@ const controlSearchResults = async function (e) {
     }
 }
 
-const controlPagination =  function (goToPage){
-    console.log("controlPagination", typeof (goToPage));
+const controlPagination = function (goToPage) {
 
     resultView.renderSpinner();
 
